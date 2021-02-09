@@ -8,19 +8,18 @@ class AddNewMessage extends Component {
   }
 
   state = {
-    message: '',
-    user: ''
+    message: ''
   }
 
  addMessage = (event) => {
     event.preventDefault()
-    this.props.onAddMessage(this.state.message, this.state.user)
+    this.props.onAddMessage(this.state.message, this.props.user)
     
     this.setState({ message: ''})
   }
 
-  newMessage = (message, user) => {
-    this.setState({ message, user })
+  newMessage = (message) => {
+    this.setState({ message })
   }
 
   isDisabled = () => {
@@ -36,8 +35,8 @@ class AddNewMessage extends Component {
                         type="text"
                         className="form-control"
                         placeholder="Type a message..."
-                        value={this.state.user === this.props.user ? this.state.message : 'Type a message...'}
-                        onChange={(event) => this.newMessage(event.target.value, this.props.user)}
+                        value={this.state.message}
+                        onChange={(event) => this.newMessage(event.target.value)}
                     />
                     <div className="input-group-append">
                         <button
